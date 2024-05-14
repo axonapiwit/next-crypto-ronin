@@ -16,13 +16,16 @@ import {
 import { Button } from "@/components/ui/button";
 import DonutChart from "@/components/custom/DonutChart";
 import Countdown from "@/components/custom/Countdown";
+import Svg from "@/components/custom/Svg";
+import Timeline from "@/components/custom/Timeline";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 export default function Home() {
   const { data: users, isLoading } = useQuery("initial-users", getUsers, {
     staleTime: 3000,
   });
 
-  const perks = [
+  const features = [
     {
       name: "Safe & Secure",
       Icon: Package,
@@ -61,6 +64,8 @@ export default function Home() {
     },
   ];
 
+  const svgName = [268, 280, 282, 284, 291];
+
   return (
     <main className="flex min-h-screen space-y-8 flex-col items-center justify-between p-24 bg-blue-950">
       <section
@@ -85,33 +90,40 @@ export default function Home() {
         <h1 className="text-white text-2xl font-semibold">
           Join the 20,000+ companies using the our platform
         </h1>
+        <div className="flex justify-center items-center gap-8 mt-12">
+          {svgName.map((item, index) => (
+            <Svg key={index} name={`logoipsum-${item}` ?? ''} />
+          ))}
+        </div>
       </section>
       <section>
         <MaxWidthWrapper className="py-4 space-y-8">
           <div className="text-center space-y-2">
-            <h1 className="text-white font-semibold">CRYPTO FEATURES</h1>
+            <h1 className="text-white text-2xl font-semibold">
+              CRYPTO FEATURES
+            </h1>
             <h3 className="text-muted-foreground">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed
               congue arcu, In et dignissim quam condimentum vel.
             </h3>
           </div>
           <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-1 sm:gap-6 lg:grid-cols-3 lg:gap-10">
-            {perks.map((perk) => (
+            {features.map((feature) => (
               <div
-                key={perk.name}
+                key={feature.name}
                 className="text-center md:flex md:items-start md:text-left lg:block lg:text-center"
               >
                 <div className="md:flex-shrink-0 flex justify-center">
                   <div className="h-16 w-16 flex items-center justify-center rounded-full bg-blue-100 text-primary">
-                    {<perk.Icon className="w-1/3 h-1/3" />}
+                    {<feature.Icon className="w-1/3 h-1/3" />}
                   </div>
                 </div>
                 <div className="mt-6 md:ml-4 md:mt-0 lg:ml-0 lg:mt-6">
                   <h3 className="text-base font-medium text-white dark:text-foreground">
-                    {perk.name}
+                    {feature.name}
                   </h3>
                   <p className="mt-3 text-sm text-muted-foreground">
-                    {perk.description}
+                    {feature.description}
                   </p>
                 </div>
               </div>
@@ -120,7 +132,7 @@ export default function Home() {
         </MaxWidthWrapper>
       </section>
       <section
-        className="hero min-h-screen w-full flex justify-between"
+        className="hero min-h-screen w-full flex justify-between px-24"
         style={{
           backgroundImage: "url(/images/stock-chart.svg)",
         }}
@@ -150,130 +162,30 @@ export default function Home() {
           </CardFooter>
         </Card>
         <div className="text-right space-y-4">
-          <h1 className="text-lg font-bold text-white">Token Sale will start in:</h1>
+          <h1 className="text-lg font-bold text-white">
+            Token Sale will start in:
+          </h1>
           <Countdown />
         </div>
       </section>
-      <section className="text-center">
-        <Image
-          src={`/images/animated-shape.svg`}
-          alt={"animated-shape"}
-          width={1440}
-          height={560}
-        />
+      <section
+        className="space-y-10"
+        style={{
+          backgroundImage: "url(/images/animated-shape.svg)",
+        }}
+      >
+        <Timeline />
       </section>
-      <section className="space-y-10">
-        <div>
-          <h1 className="text-white text-center text-2xl">Timeline</h1>
-        </div>
-        <ul className="timeline timeline-vertical">
-          <li>
-            <div className="timeline-start timeline-box">Token</div>
-            <div className="timeline-middle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5 text-primary"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <hr className="bg-primary" />
-          </li>
-          <li>
-            <hr className="bg-primary" />
-            <div className="timeline-middle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5 text-primary"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <div className="timeline-end timeline-box">Mint NFT</div>
-            <hr className="bg-primary" />
-          </li>
-          <li>
-            <hr className="bg-primary" />
-            <div className="timeline-start timeline-box">Staking</div>
-            <div className="timeline-middle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5 text-primary"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <hr />
-          </li>
-          <li>
-            <hr />
-            <div className="timeline-middle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <div className="timeline-end timeline-box">Loot Box</div>
-            <hr />
-          </li>
-          <li>
-            <hr />
-            <div className="timeline-start timeline-box">NFT Marketplace</div>
-            <div className="timeline-middle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-          </li>
-        </ul>
+      <section className="text-center space-y-10">
+        <h1 className="text-white text-2xl font-semibold">OUR TEAM</h1>
+        <Card className="max-w-sm">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <CardTitle className="p-4">Serizawa</CardTitle>
+        </Card>
       </section>
-
-      {/* {users?.map((user) => (
-        <div key={user.id} className="text-center p-6">
-          <Image
-            src={`https://robohash.org/${user.id}?set=set2&size=80x80` ?? ""}
-            alt={user.name}
-            width={80}
-            height={80}
-          />
-          <h3>{user.name}</h3>
-        </div>
-      ))} */}
     </main>
   );
 }
