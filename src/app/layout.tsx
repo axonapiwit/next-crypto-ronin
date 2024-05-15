@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import Navbar from "@/layout/Navbar";
 import Footer from "@/layout/Footer";
+import SessionWrapper from "@/providers/SessionWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ReactQueryProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </ReactQueryProvider>
+        <SessionWrapper>
+          <ReactQueryProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </ReactQueryProvider>
+        </SessionWrapper>
       </body>
     </html>
   );

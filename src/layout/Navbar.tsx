@@ -1,20 +1,26 @@
+"use client";
+
 import Link from "next/link";
 import MaxWidthWrapper from "../components/custom/MaxWidthWrapper";
 import ConnectRoninWalletButton from "../components/ConnectWallet";
-import { auth } from "@/lib/auth";
-import { SignIn, SignOut } from "@/components/custom/Auth";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 
-const Navbar = async () => {
-  const session = await auth();
-  if (!session?.user) return <SignIn />;
+const Navbar = () => {
+  const { data: session } = useSession();
+  if (!session?.user)
+    return (
+      <div>
+        <p>Not Signed In</p>
+        <button onClick={() => signIn("google")}>Sign in with google</button>
+      </div>
+    );
   return (
     <div className="flex gap-2 items-center">
-      <span className="hidden text-sm sm:inline-flex">
-        {session.user.email}
-      </span>
+      <p>Welcome {session.user?.name}. Signed In As</p>
+      <p>{session.user?.email}</p>
+      <button onClick={() => signOut()}>Sign out</button>
     </div>
     // <header className="fixed z-50 left-0 top-0 inset-x-0 backdrop-blur">
     //   <MaxWidthWrapper>

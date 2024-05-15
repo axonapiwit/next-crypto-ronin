@@ -1,5 +1,4 @@
-
-import { signIn, signOut } from "@/lib/auth"
+import { useSession, signIn, signOut } from "next-auth/react"
 import { Button } from "../ui/button"
 
 export function SignIn({
