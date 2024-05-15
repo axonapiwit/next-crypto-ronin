@@ -178,12 +178,13 @@ export default function Home() {
       </section>
       <section className="text-center space-y-10">
         <h1 className="text-white text-2xl font-semibold">OUR TEAM</h1>
-        <Card className="max-w-sm">
+        <Card className="max-w-xs">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>Loading...</AvatarFallback>
           </Avatar>
           <CardTitle className="p-4">Serizawa</CardTitle>
+          <CardContent>CEO</CardContent>
         </Card>
       </section>
     </main>
