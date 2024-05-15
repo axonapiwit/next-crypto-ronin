@@ -2,9 +2,9 @@
 
 import React, { Fragment, useEffect } from "react";
 import { useQuery } from "react-query";
-import { getCollections } from "@/api";
 import CardCollection from "@/components/custom/CardCollection";
 import SkeletonCollection from "@/components/custom/SkeletonCollection";
+import { getCollections } from "../api";
 
 export default function Collection() {
   const { data, isLoading } = useQuery("collections", getCollections, {

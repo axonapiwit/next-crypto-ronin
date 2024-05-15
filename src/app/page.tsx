@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { getUsers } from "@/api";
 import { useQuery } from "react-query";
 import { CheckCircle, Leaf, Package } from "lucide-react";
 import MaxWidthWrapper from "@/components/custom/MaxWidthWrapper";
@@ -19,6 +18,7 @@ import Countdown from "@/components/custom/Countdown";
 import Svg from "@/components/custom/Svg";
 import Timeline from "@/components/custom/Timeline";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { getUsers } from "./api";
 
 export default function Home() {
   const { data: users, isLoading } = useQuery("initial-users", getUsers, {
