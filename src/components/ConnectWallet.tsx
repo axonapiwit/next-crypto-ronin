@@ -32,12 +32,20 @@ function ConnectRoninWalletButton(props: any) {
     }
   }
 
+  function formatAddress(address: string): string {
+    // Assuming address is at least 12 characters long
+    if (address.length < 12) {
+      return address
+    }
+    return `${address.slice(0, 3)}x${address.slice(3, 6)}...${address.slice(-4)}xd`
+  }
+
   if (userAddress === undefined) {
     return <Button onClick={connectRoninWallet}>Connect Ronin Wallet</Button>
   }
 
   if (userAddress) {
-    return `🎉 address: ${userAddress}`
+    return `🎉 address: ${formatAddress(userAddress[0])}`
   }
 
 }

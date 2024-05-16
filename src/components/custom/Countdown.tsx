@@ -38,9 +38,9 @@ const Countdown = () => {
   }, []);
 
   return (
-    <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
+    <div className="grid grid-cols-2 gap-5 text-center auto-cols-max sm:grid-cols-4 md:gap-6">
       <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-        <span className="countdown font-mono text-5xl">
+        <span className="countdown font-mono text-4xl sm:text-5xl">
           <span
             style={{ "--value": timeLeft.days } as React.CSSProperties}
           ></span>
@@ -48,7 +48,7 @@ const Countdown = () => {
         days
       </div>
       <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-        <span className="countdown font-mono text-5xl">
+        <span className="countdown font-mono text-4xl sm:text-5xl">
           <span
             style={{ "--value": timeLeft.hours } as React.CSSProperties}
           ></span>
@@ -56,7 +56,7 @@ const Countdown = () => {
         hours
       </div>
       <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-        <span className="countdown font-mono text-5xl">
+        <span className="countdown font-mono text-4xl sm:text-5xl">
           <span
             style={{ "--value": timeLeft.minutes } as React.CSSProperties}
           ></span>
@@ -64,7 +64,7 @@ const Countdown = () => {
         min
       </div>
       <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-        <span className="countdown font-mono text-5xl">
+        <span className="countdown font-mono text-4xl sm:text-5xl">
           <span
             style={{ "--value": timeLeft.seconds } as React.CSSProperties}
           ></span>

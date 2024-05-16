@@ -3,7 +3,7 @@
 import Link from "next/link";
 import MaxWidthWrapper from "../components/custom/MaxWidthWrapper";
 import ConnectRoninWalletButton from "../components/ConnectWallet";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import { useSession } from "next-auth/react"
 import { Button } from "@/components/ui/button";
 
@@ -22,8 +22,16 @@ const Navbar = () => {
               Collection
             </Link>
           </div>
-          <ConnectRoninWalletButton />
-          <Button onClick={() => signIn("google")} >Google</Button>
+          <h1>{session?.user?.email}</h1>
+          {status === "unauthenticated" && (
+            <>
+              <ConnectRoninWalletButton />
+              {/* <Button variant={'destructive'} onClick={() => signIn("google")} >Google</Button> */}
+            </>
+          )}
+          {status === "authenticated" && (
+            <Button onClick={() => signOut()}>Sign Out</Button>
+          )}
         </div>
       </MaxWidthWrapper>
     </header>

@@ -38,6 +38,7 @@
     "react-dom": "^18",
     "react-ipfs-image": "^0.7.1",
     "react-query": "^3.39.3",
+    "react-scroll-to-top": "^3.0.0",
     "siwe": "1.1.6",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
